@@ -1,8 +1,14 @@
-workspace = { members = ["actix-gcd"] }
 [package]
 name = "awesome-rust"
 version = "0.1.0"
 edition = "2021"
+
+[[bin]]
+name = "pattern_match"
+path = "src/pattern_match.rs"
+
+[workspace]
+members = ["actix-gcd", "backyard", "ownership", "restaurant"]
 
 ignore = [
     "/target/",
