@@ -14,10 +14,10 @@ impl Rectangle {
     }
 
     fn square(size: u32) -> Self {
-        Self { 
+        Self {
             width: size,
             height: size,
-         }
+        }
     }
 }
 

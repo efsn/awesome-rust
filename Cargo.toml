@@ -8,7 +8,7 @@ name = "pattern_match"
 path = "src/pattern_match.rs"
 
 [workspace]
-members = ["actix-gcd", "backyard", "ownership", "rectangles", "restaurant", "structs"]
+members = ["actix-gcd", "backyard", "enums", "ownership", "rectangles", "restaurant", "structs"]
 
 ignore = [
     "/target/",
