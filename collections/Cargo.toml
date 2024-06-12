@@ -1,0 +1,12 @@
+[package]
+name = "collections"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "quiz"
+path = "src/quiz.rs"
+
+[dependencies]
+regex="1.7.1"
+rand="0.8.5"

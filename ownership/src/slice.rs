@@ -15,5 +15,5 @@ fn main() {
     let word = first_word(&s);
 
     println!("first is {}", word);
-    s.clear();  // 可变引用
+    s.clear(); // 可变引用
 }

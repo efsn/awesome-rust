@@ -9,5 +9,5 @@ fn min(arr: Vec<i32>) -> i32 {
 }
 
 fn main() {
-    println!("{}", min(vec![2,4,5,6,1]))
+    println!("{}", min(vec![2, 4, 5, 6, 1]))
 }
