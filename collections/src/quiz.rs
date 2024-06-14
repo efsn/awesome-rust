@@ -8,10 +8,20 @@ use std::collections::HashMap;
 接着让用户获取一个部门的所有员工的列表，或者公司每个部门的所有员工按照字典序排列的列表。
 */
 
-/// 给定一系列数字，使用 vector 并返回这个列表的平均数（mean, average）、
-/// 中位数（排列数组后位于中间的值）
-/// 和众数（mode，出现次数最多的值；
-/// 这里哈希 map 会很有帮助）
+#[derive(Debug)]
+enum Dept {
+    Engineering(Vec<String>),
+    Sales(Vec<String>),
+}
+
+impl Dept {
+    fn add_new_employ(name: &str) {}
+
+    fn show(self, name: &str) {
+        println!("Add {} to {:?}", name, &self)
+    }
+}
+
 fn calc_average(ls: &Vec<i32>) -> i32 {
     let mut sum = 0;
 
@@ -20,6 +30,13 @@ fn calc_average(ls: &Vec<i32>) -> i32 {
     }
 
     sum / ls.len() as i32
+}
+
+fn calc_median(ls: &Vec<i32>) -> i32 {
+    let mut cln = ls.clone();
+    cln.sort();
+
+    cln[ls.len() / 2]
 }
 
 fn calc_mode(vec: &Vec<i32>) -> i32 {
@@ -43,11 +60,6 @@ fn calc_mode(vec: &Vec<i32>) -> i32 {
     mp[&max_key]
 }
 
-/// 将字符串转换为 Pig Latin，
-/// 也就是每一个单词的第一个辅音字母被移动到单词的结尾并增加 “ay”，
-/// 所以 “first” 会变成 “irst-fay”。
-/// 元音字母开头的单词则在结尾增加 “hay”（“apple” 会变成 “apple-hay”）。
-/// 牢记 UTF-8 编码！
 fn pig_latin(word: &str) -> String {
     if word.len() < 2 {
         return word.to_string();
@@ -62,9 +74,15 @@ fn pig_latin(word: &str) -> String {
     }
 }
 
+fn gen_range(len: i32) -> Vec<i32> {
+    (0..len)
+        .map(|_| rand::thread_rng().gen_range(1..10))
+        .collect()
+}
+
 fn main() {
-    let org = vec![1, 2, 3, 4, 5, 6, 7, 8, 9];
-    println!("The avg is {}", calc_average(&org));
+    let rdm_avg = gen_range(10);
+    println!("The avg of {:?} is {:}", &rdm_avg, calc_average(&rdm_avg));
 
     let first = "first";
     println!("The pig latin of {} is {}", first, pig_latin(first));
@@ -72,8 +90,13 @@ fn main() {
     let apple = "apple";
     println!("The pig latin of {} is {}", apple, pig_latin(apple));
 
-    let rdm_u32 = (0..10)
-        .map(|_| rand::thread_rng().gen_range(1..10))
-        .collect();
-    println!("The mode of {:?} is {:}", &rdm_u32, calc_mode(&rdm_u32));
+    let rdm_mode = gen_range(10);
+    println!("The mode of {:?} is {:}", &rdm_mode, calc_mode(&rdm_mode));
+
+    let rdm_median = gen_range(10);
+    println!(
+        "The median of {:?} is {:}",
+        &rdm_median,
+        calc_median(&rdm_median)
+    );
 }
