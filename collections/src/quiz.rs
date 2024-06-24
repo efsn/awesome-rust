@@ -1,12 +1,6 @@
 use rand::Rng;
 use regex::Regex;
-use std::collections::HashMap;
-
-/*
-使用哈希 map 和 vector，创建一个文本接口来允许用户向公司的部门中增加员工的名字。
-例如，“Add Sally to Engineering” 或 “Add Amir to Sales”。
-接着让用户获取一个部门的所有员工的列表，或者公司每个部门的所有员工按照字典序排列的列表。
-*/
+use std::collections::{linked_list, HashMap};
 
 #[derive(Debug)]
 enum Dept {
@@ -15,11 +9,15 @@ enum Dept {
 }
 
 impl Dept {
-    fn add_new_employ(name: &str) {}
-
-    fn show(self, name: &str) {
-        println!("Add {} to {:?}", name, &self)
+    fn add_new_employer(&mut self, name: String) {
+        println!("Add {} to {:?}", &name, &self);
+        match self {
+            Dept::Engineering(list) => list.push(name),
+            Dept::Sales(list) => list.push(name),
+        }
     }
+
+    fn show(&self, name: &str) {}
 }
 
 fn calc_average(ls: &Vec<i32>) -> i32 {
@@ -99,4 +97,18 @@ fn main() {
         &rdm_median,
         calc_median(&rdm_median)
     );
+
+    let sally = "Sally";
+    let amir = "Amir";
+    let mut engineering = Dept::Engineering(Vec::new());
+    let mut sales = Dept::Sales(Vec::new());
+
+    engineering.add_new_employer(sally.to_string());
+    sales.add_new_employer(amir.to_string());
 }
+
+/*
+使用哈希 map 和 vector，创建一个文本接口来允许用户向公司的部门中增加员工的名字。
+例如，“Add Sally to Engineering” 或 “Add Amir to Sales”。
+接着让用户获取一个部门的所有员工的列表，或者公司每个部门的所有员工按照字典序排列的列表。
+*/
